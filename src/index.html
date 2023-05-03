@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="css/index.css">
+  <title>Todo app</title>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <div class="topWrapper">
+      <h1>Todo</h1>
+      <button class="themeSwitcher">
+        <img src="assets/images/icon-sun.svg" alt="">
+      </button>
+    </div>
+    <form action="">
+      <div class="newTodoWrapper">
+        <input type="checkbox" name="newTodoCheckbox" disabled id="newTodoCheckbox">
+        <input type="text" name="newTodoInput" id="newTodoInput" placeholder="Create a new todo">
+      </div>
+      <ul class="todoList">
+        <li>
+          <input checked type="checkbox" name="" id="">
+          <p>Read for 1 hour</p>
+          <button>
+            <img src="assets/images/icon-cross.svg" alt="">
+          </button>
+        </li>
+        <li class="lastListItem">
+          <p>items left</p>
+          <button>Clear Completed</button>
+        </li>
+      </ul>
+      <div class="filters">
+        <button class="chosenFilter">All</button>
+        <button>Active</button>
+        <button>Completed</button>
+      </div>
+    </form>
+    <p class="bottomParagraph">Drag and drop to reorder list</p>
+  </main>
+</body>
+</html>

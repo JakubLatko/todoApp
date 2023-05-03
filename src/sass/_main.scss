@@ -1,0 +1,136 @@
+@use 'variables' as *;
+
+main{
+    background-image: url(../assets/images/bg-mobile-dark.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top center;
+    display: flex;
+    flex-direction: column;
+    padding-inline: 5vw;
+}
+
+
+.topWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    h1{
+        color: var(--neutral-600);
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        font-size: clamp(2rem, 10vw, 4rem);
+    }
+}
+
+.themeSwitcher{
+    background: transparent;
+    border: 0;
+}
+
+.newTodoWrapper{
+    display: flex;
+    align-items: center;
+    background-color: var(--neutral-200);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 2rem;
+}
+
+#newTodoCheckbox{
+    border-radius:100px;
+    width: 1.5rem;
+    border: 0;
+    aspect-ratio: 1;
+    height: 50%;
+    border: 1px solid var(--neutral-300);
+    appearance: none;
+}
+
+#newTodoInput{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--neutral-200);
+    border: 0;
+    margin-left: .5rem;
+    font-size: clamp(.75rem, 4vw, 1.5rem);
+    text-align: left;
+
+}
+
+
+.todoList{
+    padding-inline-start: 0;
+    list-style: none;
+    
+    li{
+        background-color: var(--neutral-200);
+        display: flex;
+        padding: 1rem;
+        border-bottom:1px solid var(--neutral-400) ;
+        &:first-child{
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+        }
+        &:last-child{
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border: 0;
+
+        }
+        input{
+
+        }
+        p{
+            color: var(--neutral-600);
+        }
+        button{
+            border: 0;
+            background: transparent;
+            margin-left: auto;
+        }
+    }
+}
+
+.lastListItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    p,button{
+        color:var(--neutral-600);
+        font-size: clamp(.75rem, 3vw, 1.5rem);
+    }
+    
+}
+
+
+.filters{
+    display: flex;
+    padding: 1rem;
+    background-color: var(--neutral-200);
+    justify-content: center;
+    gap: 1rem;
+    border-radius: 5px;
+    button{
+        border: 0;
+        background: transparent;
+        color: var(--neutral-400);
+        font-weight: 700;
+        
+
+    }
+}
+
+.chosenFilter{
+    color: var(--primary-500);
+}
+
+.bottomParagraph{
+    margin-inline: auto;
+    color: var(--neutral-400);
+    padding: 3rem;
+}

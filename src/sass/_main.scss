@@ -1,13 +1,31 @@
 @use 'variables' as *;
 
-main{
+body{
     background-image: url(../assets/images/bg-mobile-dark.jpg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: top center;
+    align-items: center;
+}
+
+
+main{
+    
     display: flex;
     flex-direction: column;
-    padding-inline: 5vw;
+    //padding-inline: 5vw;
+    width: 90vw;
+}
+
+@media only screen and (min-width:650px){
+    main{
+        max-width:600px ;
+    }
+}
+@media only screen and (min-width:768px){
+    body{
+        background-image: url(../assets/images/bg-desktop-dark.jpg);
+    }
 }
 
 
@@ -16,14 +34,19 @@ main{
     flex-direction: row;
     justify-content: space-between;
     margin-top: 1.5rem;
+   
     h1{
-        color: var(--neutral-600);
+        color: var(--light-900);
         font-weight: 400;
         text-transform: uppercase;
         letter-spacing: 10px;
         font-size: clamp(2rem, 10vw, 4rem);
     }
 }
+
+// .todoForm{
+
+// }
 
 .themeSwitcher{
     background: transparent;
@@ -82,9 +105,16 @@ main{
 
         }
         input{
-
+            accent-color: red;
+            //linear-gradient(135deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 100%);
+            border: 1px solid red;
+            aspect-ratio: 1;
+            width: 1.5rem;
         }
         p{
+            display: flex;
+            align-items: center;
+            margin-left: .5rem;
             color: var(--neutral-600);
         }
         button{

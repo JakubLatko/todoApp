@@ -17,16 +17,7 @@ main{
     width: 90vw;
 }
 
-@media only screen and (min-width:650px){
-    main{
-        max-width:600px ;
-    }
-}
-@media only screen and (min-width:768px){
-    body{
-        background-image: url(../assets/images/bg-desktop-dark.jpg);
-    }
-}
+
 
 
 .topWrapper{
@@ -81,29 +72,28 @@ main{
     margin-left: .5rem;
     font-size: clamp(.75rem, 4vw, 1.5rem);
     text-align: left;
-
+    color: var(--neutral-700);
 }
 
 
 .todoList{
     padding-inline-start: 0;
     list-style: none;
-    
+    margin-block: 0;
+    margin-block-start: 1rem;
     li{
-        background-color: var(--neutral-200);
-        display: flex;
-        padding: 1rem;
-        border-bottom:1px solid var(--neutral-400) ;
         &:first-child{
             border-top-right-radius: 5px;
             border-top-left-radius: 5px;
         }
-        &:last-child{
-            border-bottom-right-radius: 5px;
-            border-bottom-left-radius: 5px;
-            border: 0;
-
-        }
+        
+    }
+    .todo{
+        background-color: var(--neutral-200);
+        display: flex;
+        padding: 1rem;
+        border-bottom:1px solid var(--neutral-400) ;
+        
         input{
             accent-color: red;
             //linear-gradient(135deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 100%);
@@ -129,10 +119,17 @@ main{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    background-color: var(--neutral-200);
+    padding: 1rem;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
     p,button{
         color:var(--neutral-600);
         font-size: clamp(.75rem, 3vw, 1.5rem);
+        border: 0;
+        background: transparent;
     }
     
 }
@@ -163,4 +160,27 @@ main{
     margin-inline: auto;
     color: var(--neutral-400);
     padding: 3rem;
+}
+
+@media only screen and (min-width:650px){
+    main{
+        max-width:600px ;
+    }
+}
+@media only screen and (min-width:768px){
+    body{
+        background-image: url(../assets/images/bg-desktop-dark.jpg);
+    }
+    .lastListItem{
+        p,button{
+            font-size: clamp(0.75rem, 1.25vw, 1.25rem);
+        }
+    }
+
+    .lastListItem{
+        border-radius: 0;
+        border-bottom: 1px solid var(--neutral-400);
+        margin-bottom: 0;
+    }
+    
 }

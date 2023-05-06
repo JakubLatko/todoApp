@@ -5,7 +5,6 @@ let theme = "dark"
 let body = document.body
 
 
-
 themeButton.addEventListener("click", () =>{
     if(theme === "dark"){
         switchToLight()
@@ -47,19 +46,112 @@ function switchToDark(){
 
 
 
-
-
 body.addEventListener("load", updateTheme())
+
+
+
 
 function updateTheme(){
     let currentTheme = localStorage.getItem("theme")
-    console.log(currentTheme)
     if(currentTheme === "dark"){
         switchToDark()
         return
     } else if (currentTheme === "light"){
         switchToLight()
-        //localStorage.setItem("theme", light )
         return
     }
 }
+
+let itemsLeft = document.querySelector("#itemsLeft")
+function updateNumberOfTodos(){
+    itemsLeft.innerText = `${todos.length} items left`
+}
+
+
+const newTodoInput = document.querySelector("#newTodoInput")
+const todoList = document.querySelector(".todoList")
+const todoInputWrapper = document.querySelector(".newTodoWrapper")
+
+
+
+let todos = []
+
+
+
+
+todoInputWrapper.addEventListener("submit", (e)=>{
+    let todo = {
+        id:Date.now(),
+        text:newTodoInput.value,
+        completed: false,
+    }
+    let part = document.createElement("div")
+    part.setAttribute("class", "todo")
+    part.setAttribute("id", todo.id)
+    part.innerHTML=`
+        <input type="checkbox" name="">
+        <p>${todo.text}</p>
+        <button class="deleteButton">
+            <img src="assets/images/icon-cross.svg" alt="">
+        </button>
+    `
+    todoList.append(part)
+    todos.push(todo)
+    newTodoInput.value=""
+
+    e.preventDefault()
+    updateNumberOfTodos()
+    console.log(todos)
+
+})
+
+function loadTodos(){
+    console.log("it works")
+    console.log(localStorage.getItem("todos"))
+    let localTodos = localStorage.getItem("todos")
+    localTodos.forEach(element => {
+        element.setAttribute("class", "todo")
+        element.setAttribute("id", element.id)
+        element.innerHTML=`
+            <input type="checkbox" name="">
+            <p>${element.text}</p>
+            <button class="deleteButton">
+                <img src="assets/images/icon-cross.svg" alt="">
+            </button>
+        `
+    todoList.append(element)
+    });
+}
+
+localStorage.setItem("todos", [
+    {
+        id:12341234,
+        text:"sometinhf weird",
+        completed:false,
+    },
+    {
+        id:1342342,
+        text:"sometinhf normal",
+        completed:false,
+    },
+    1,
+    2
+])
+
+// function deleteTodo(){
+//     let deleteButtons = document.querySelectorAll(".deleteButton")
+//     deleteButtons.forEach(element => {
+//         element.addEventListener("click", (e) =>{
+//             console.log("removed")
+//            let target = e.target.closest(".todo")
+//            if(target){
+//             target.remove()
+//            }
+//         })
+//     });
+
+
+// }
+
+
+body.addEventListener("load", loadTodos())

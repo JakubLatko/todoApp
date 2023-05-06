@@ -26,7 +26,12 @@
       <div>
         <ul class="todoList">
           <li class="todo">
-            <input checked type="checkbox" name="" id="">
+            <div class="container">
+              <div class="round">
+                <input type="checkbox" checked id="checkbox" />
+                <label for="checkbox"></label>
+              </div>
+            </div>
             <p>Read for 1 hour</p>
             <button>
               <img src="assets/images/icon-cross.svg" alt="">
@@ -34,13 +39,22 @@
           </li>
           
         </ul>
-        <div class="lastListItem">
+        <div class="filtersAndLastItem desktopOnly">
+            <p id="itemsLeft">0 items left</p>
+            <div class="filters">
+              <button class="chosenFilter">All</button>
+              <button>Active</button>
+              <button>Completed</button>
+            </div>
+            <button class="clearCompleted">Clear Completed</button>
+        </div>
+        <div class="lastListItem mobileOnly">
           <p id="itemsLeft">0 items left</p>
           <button>Clear Completed</button>
         </div>
       </div>
       
-      <div class="filters">
+      <div class="filters mobileOnly">
         <button class="chosenFilter">All</button>
         <button>Active</button>
         <button>Completed</button>

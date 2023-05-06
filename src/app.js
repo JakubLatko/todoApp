@@ -62,19 +62,23 @@ function updateTheme(){
     }
 }
 
-let itemsLeft = document.querySelector("#itemsLeft")
-function updateNumberOfTodos(){
-    itemsLeft.innerText = `${todos.length} items left`
-}
+/////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 const newTodoInput = document.querySelector("#newTodoInput")
 const todoList = document.querySelector(".todoList")
 const todoInputWrapper = document.querySelector(".newTodoWrapper")
 
+let itemsLeft = document.querySelector("#itemsLeft")
+function updateNumberOfTodos(){
+    itemsLeft.innerText = `${todos.length} items left`
+}
 
 
-let todos = []
+
+var todos = []
 
 
 
@@ -89,7 +93,12 @@ todoInputWrapper.addEventListener("submit", (e)=>{
     part.setAttribute("class", "todo")
     part.setAttribute("id", todo.id)
     part.innerHTML=`
-        <input type="checkbox" name="">
+        <div class="container">
+          <div class="round">
+            <input type="checkbox"  id="checkbox${todo.id}" />
+            <label for="checkbox${todo.id}"></label>
+          </div>
+        </div>
         <p>${todo.text}</p>
         <button class="deleteButton">
             <img src="assets/images/icon-cross.svg" alt="">
@@ -101,42 +110,35 @@ todoInputWrapper.addEventListener("submit", (e)=>{
 
     e.preventDefault()
     updateNumberOfTodos()
-    console.log(todos)
-
+    localStorage.setItem("todos", JSON.stringify(todos))
 })
 
 function loadTodos(){
-    console.log("it works")
     console.log(localStorage.getItem("todos"))
-    let localTodos = localStorage.getItem("todos")
+    let localTodosJSON = localStorage.getItem("todos")
+    let localTodos = JSON.parse(localTodosJSON)
     localTodos.forEach(element => {
-        element.setAttribute("class", "todo")
-        element.setAttribute("id", element.id)
-        element.innerHTML=`
-            <input type="checkbox" name="">
+        let part = document.createElement("div")
+        part.setAttribute("class", "todo")
+        part.setAttribute("id", element.id)
+        part.innerHTML=`
+            <div class="container">
+              <div class="round">
+                <input type="checkbox"  id="checkbox${element.id}" />
+                <label for="checkbox${element.id}"></label>
+              </div>
+            </div>
             <p>${element.text}</p>
             <button class="deleteButton">
                 <img src="assets/images/icon-cross.svg" alt="">
             </button>
         `
-    todoList.append(element)
+    todoList.append(part)
+    updateNumberOfTodos
+    todos = localTodos
     });
 }
 
-localStorage.setItem("todos", [
-    {
-        id:12341234,
-        text:"sometinhf weird",
-        completed:false,
-    },
-    {
-        id:1342342,
-        text:"sometinhf normal",
-        completed:false,
-    },
-    1,
-    2
-])
 
 // function deleteTodo(){
 //     let deleteButtons = document.querySelectorAll(".deleteButton")

@@ -16,39 +16,34 @@ themeButton.addEventListener("click", () =>{
 })
 
 function switchToLight(){
-    console.log("lightDziala")
     root.style.setProperty('--neutral-100', 'hsl(236, 33%, 92%)')
-        root.style.setProperty('--neutral-200', 'hsl(0, 0%, 98%)')
-        root.style.setProperty('--neutral-300', 'hsl(233, 11%, 84%)')
-        root.style.setProperty('--neutral-400', 'hsl(236, 9%, 61%)')
-        root.style.setProperty('--neutral-500', 'hsl(236, 9%, 61%)')
-        root.style.setProperty('--neutral-600', 'hsl(235, 19%, 35%)')
-        theme = "light"
-        themeIcon.src="assets/images/icon-moon.svg"
-        body.style.backgroundImage = "url(../assets/images/bg-desktop-light.jpg)"
-        localStorage.setItem("theme", theme)
+    root.style.setProperty('--neutral-200', 'hsl(0, 0%, 98%)')
+    root.style.setProperty('--neutral-300', 'hsl(233, 11%, 84%)')
+    root.style.setProperty('--neutral-400', 'hsl(236, 9%, 61%)')
+    root.style.setProperty('--neutral-500', 'hsl(236, 9%, 61%)')
+    root.style.setProperty('--neutral-600', 'hsl(235, 19%, 35%)')
+    theme = "light"
+    themeIcon.src="assets/images/icon-moon.svg"
+    body.style.backgroundImage = "url(../assets/images/bg-desktop-light.jpg)"
+    localStorage.setItem("theme", theme)
 }
 
 function switchToDark(){
-    console.log("darkDziala")
     root.style.setProperty('--neutral-100', 'hsl(235, 21%, 11%)')
-        root.style.setProperty('--neutral-200', 'hsl(235, 24%, 19%)')
-        root.style.setProperty('--neutral-300', 'hsl(237, 14%, 26%)')
-        root.style.setProperty('--neutral-400', 'hsl(233, 14%, 35%)')
-        root.style.setProperty('--neutral-500', 'hsl(234, 11%, 52%)')
-        root.style.setProperty('--neutral-600', 'hsl(234, 39%, 85%)')
-        root.style.setProperty('--neutral-700', 'hsl(236, 33%, 92%)')
-        theme = "dark"
-        themeIcon.src="assets/images/icon-sun.svg"
-        body.style.backgroundImage = "url(../assets/images/bg-desktop-dark.jpg)"
-        localStorage.setItem("theme", theme)
+    root.style.setProperty('--neutral-200', 'hsl(235, 24%, 19%)')
+    root.style.setProperty('--neutral-300', 'hsl(237, 14%, 26%)')
+    root.style.setProperty('--neutral-400', 'hsl(233, 14%, 35%)')
+    root.style.setProperty('--neutral-500', 'hsl(234, 11%, 52%)')
+    root.style.setProperty('--neutral-600', 'hsl(234, 39%, 85%)')
+    root.style.setProperty('--neutral-700', 'hsl(236, 33%, 92%)')
+    theme = "dark"
+    themeIcon.src="assets/images/icon-sun.svg"
+    body.style.backgroundImage = "url(../assets/images/bg-desktop-dark.jpg)"
+    localStorage.setItem("theme", theme)
 }
 
 
-
 body.addEventListener("load", updateTheme())
-
-
 
 
 function updateTheme(){
@@ -66,7 +61,6 @@ function updateTheme(){
 
 
 
-
 const newTodoInput = document.querySelector("#newTodoInput")
 const todoList = document.querySelector(".todoList")
 const todoInputWrapper = document.querySelector(".newTodoWrapper")
@@ -77,10 +71,7 @@ function updateNumberOfTodos(){
 }
 
 
-
 var todos = []
-
-
 
 
 todoInputWrapper.addEventListener("submit", (e)=>{
@@ -114,7 +105,6 @@ todoInputWrapper.addEventListener("submit", (e)=>{
 })
 
 function loadTodos(){
-    console.log(localStorage.getItem("todos"))
     let localTodosJSON = localStorage.getItem("todos")
     let localTodos = JSON.parse(localTodosJSON)
     localTodos.forEach(element => {
@@ -140,20 +130,28 @@ function loadTodos(){
 }
 
 
-// function deleteTodo(){
-//     let deleteButtons = document.querySelectorAll(".deleteButton")
-//     deleteButtons.forEach(element => {
-//         element.addEventListener("click", (e) =>{
-//             console.log("removed")
-//            let target = e.target.closest(".todo")
-//            if(target){
-//             target.remove()
-//            }
-//         })
-//     });
-
-
-// }
-
-
 body.addEventListener("load", loadTodos())
+
+
+
+let somethings = document.querySelectorAll(".deleteButton")
+console.log(somethings)
+
+somethings.forEach(element => {
+    element.addEventListener("click", (e)=>{
+       
+        let button = e.target.closest(".deleteButton")
+        let todoToDelete = e.target.closest(".todo")
+        
+        todos.forEach(element => {
+            if(element.id == todoToDelete.id){
+                let toRemove = todos.indexOf(element)
+                todos.splice(toRemove, 1)
+                console.log(todos)             
+               
+                
+            }
+        });
+    })
+});
+

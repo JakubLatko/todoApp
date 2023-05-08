@@ -220,7 +220,12 @@ main{
 //   }
 
 
-
+.todo:has(input:checked){
+    p{
+        text-decoration: line-through;
+        color: var(--neutral-400);
+    }
+}
 
 
 

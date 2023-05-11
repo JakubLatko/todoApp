@@ -75,6 +75,8 @@ var todos = []
 
 
 todoInputWrapper.addEventListener("submit", (e)=>{
+    console.log(newTodoInput.value)
+    if(newTodoInput.value == '') return
     let todo = {
         id:Date.now(),
         text:newTodoInput.value,
@@ -86,7 +88,7 @@ todoInputWrapper.addEventListener("submit", (e)=>{
     part.innerHTML=`
         <div class="container">
           <div class="round">
-            <input type="checkbox"  id="checkbox${todo.id}" />
+            <input type="checkbox" checked="false"  id="checkbox${todo.id}" />
             <label for="checkbox${todo.id}"></label>
           </div>
         </div>
@@ -102,6 +104,7 @@ todoInputWrapper.addEventListener("submit", (e)=>{
     e.preventDefault()
     updateNumberOfTodos()
     localStorage.setItem("todos", JSON.stringify(todos))
+    deleteTodos()
 })
 
 function loadTodos(){
@@ -114,7 +117,7 @@ function loadTodos(){
         part.innerHTML=`
             <div class="container">
               <div class="round">
-                <input type="checkbox"  id="checkbox${element.id}" />
+                <input checked="false" type="checkbox" class=".checkbox"  id="checkbox${element.id}" />
                 <label for="checkbox${element.id}"></label>
               </div>
             </div>
@@ -123,35 +126,74 @@ function loadTodos(){
                 <img src="assets/images/icon-cross.svg" alt="">
             </button>
         `
+    
     todoList.append(part)
-    updateNumberOfTodos
+    updateNumberOfTodos()
     todos = localTodos
-    });
+    deleteTodos()
+    })
+    
 }
 
 
+
 body.addEventListener("load", loadTodos())
+body.addEventListener("load", deleteTodos())
+body.addEventListener("load", markingTodos())
 
 
+function deleteTodos(){
+    let delBtuttons = document.querySelectorAll(".deleteButton")
+    delBtuttons.forEach(element => {
+        element.addEventListener("click", (e)=>{
+            let todoToDelete = e.target.closest(".todo")
+            todos.forEach(element => {
+                if(element.id == todoToDelete.id){
+                    let toRemove = todos.indexOf(element)
+                    todos.splice(toRemove, 1)
+                    localStorage.setItem("todos", JSON.stringify(todos))
+                    todoList.innerHTML=""
+                    loadTodos()
+                    deleteTodos()             
+                    
 
-let somethings = document.querySelectorAll(".deleteButton")
-console.log(somethings)
+                }
+            });
+        })
+    });
+}   
 
-somethings.forEach(element => {
-    element.addEventListener("click", (e)=>{
-       
-        let button = e.target.closest(".deleteButton")
-        let todoToDelete = e.target.closest(".todo")
-        
-        todos.forEach(element => {
-            if(element.id == todoToDelete.id){
-                let toRemove = todos.indexOf(element)
-                todos.splice(toRemove, 1)
-                console.log(todos)             
-               
-                
-            }
-        });
+
+function markingTodos(){
+    console.log("marking działą")
+    let checkboxes = document.querySelectorAll(".checkbox")
+    console.log(checkboxes)
+    checkboxes.forEach(element =>{
+        element.addEventListener("click", (e)=>{
+            let marked = e.target.closest(".todo")
+            checkboxes.forEach(element =>{
+                if(element.id == marked.id){
+                    
+                    let markedTodo = todos.indexOf(element)
+                    if(markedTodo.completed == true){
+                        markedTodo = {
+                            completed:false,
+                        }
+                    } else if(markedTodo.completed == false){
+                        markedTodo = {
+                            completed:true,
+                        }
+                    }
+                    localStorage.setItem("todos", JSON.stringify(todos))
+                    todoList.innerHTML=""
+                    loadTodos()
+                    deleteTodos()
+                }
+            })    
+            
+        })
     })
-});
+}
+
+
 

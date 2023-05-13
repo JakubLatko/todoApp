@@ -88,7 +88,7 @@ todoInputWrapper.addEventListener("submit", (e)=>{
     part.innerHTML=`
         <div class="container">
           <div class="round">
-            <input type="checkbox" checked="false"  id="checkbox${todo.id}" />
+            <input type="checkbox"  class="checkbox"  id="checkbox${todo.id}" />
             <label for="checkbox${todo.id}"></label>
           </div>
         </div>
@@ -105,6 +105,7 @@ todoInputWrapper.addEventListener("submit", (e)=>{
     updateNumberOfTodos()
     localStorage.setItem("todos", JSON.stringify(todos))
     deleteTodos()
+    markingTodos()
 })
 
 function loadTodos(){
@@ -114,11 +115,25 @@ function loadTodos(){
         let part = document.createElement("div")
         part.setAttribute("class", "todo")
         part.setAttribute("id", element.id)
+        if(element.completed == true){
+            part.innerHTML=`
+            <div class="container">
+              <div class="round">
+                <input checked type="checkbox" class="checkbox"   id="checkbox${element.id}" />
+                <label class="checkboxLabel" for="checkbox${element.id}"></label>
+              </div>
+            </div>
+            <p>${element.text}</p>
+            <button class="deleteButton">
+                <img src="assets/images/icon-cross.svg" alt="">
+            </button>
+        `
+        } else if (element.completed == false)
         part.innerHTML=`
             <div class="container">
               <div class="round">
-                <input checked="false" type="checkbox" class=".checkbox"  id="checkbox${element.id}" />
-                <label for="checkbox${element.id}"></label>
+                <input  type="checkbox"  class="checkbox"   id="checkbox${element.id}" />
+                <label class="checkboxLabel" for="checkbox${element.id}"></label>
               </div>
             </div>
             <p>${element.text}</p>
@@ -131,8 +146,9 @@ function loadTodos(){
     updateNumberOfTodos()
     todos = localTodos
     deleteTodos()
-    })
     
+    })
+    markingTodos()
 }
 
 
@@ -155,7 +171,7 @@ function deleteTodos(){
                     todoList.innerHTML=""
                     loadTodos()
                     deleteTodos()             
-                    
+                    markingTodos()
 
                 }
             });
@@ -165,32 +181,24 @@ function deleteTodos(){
 
 
 function markingTodos(){
-    console.log("marking działą")
-    let checkboxes = document.querySelectorAll(".checkbox")
-    console.log(checkboxes)
-    checkboxes.forEach(element =>{
+    let labels = document.querySelectorAll(".round")
+    labels.forEach(element =>{
         element.addEventListener("click", (e)=>{
-            let marked = e.target.closest(".todo")
-            checkboxes.forEach(element =>{
-                if(element.id == marked.id){
-                    
-                    let markedTodo = todos.indexOf(element)
-                    if(markedTodo.completed == true){
-                        markedTodo = {
-                            completed:false,
-                        }
-                    } else if(markedTodo.completed == false){
-                        markedTodo = {
-                            completed:true,
-                        }
+            let markedTodo = e.target.closest(".todo")
+            todos.forEach(element =>{
+                if(element.id == markedTodo.id){
+                    let foundTodo = todos[todos.indexOf(element)]
+                    if(foundTodo["completed"] == true){
+                        foundTodo["completed"] = false
+                    } else if(foundTodo["completed"] == false){
+                        foundTodo["completed"] = true
                     }
                     localStorage.setItem("todos", JSON.stringify(todos))
                     todoList.innerHTML=""
                     loadTodos()
                     deleteTodos()
                 }
-            })    
-            
+            })
         })
     })
 }

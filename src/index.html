@@ -42,9 +42,9 @@
         <div class="filtersAndLastItem desktopOnly">
             <p id="itemsLeft">0 items left</p>
             <div class="filters">
-              <button class="chosenFilter">All</button>
-              <button>Active</button>
-              <button>Completed</button>
+              <button id="filterAll" class="filter chosenFilter">All</button>
+              <button id="filterActive" class="filter">Active</button>
+              <button id="filterCompleted" class="filter">Completed</button>
             </div>
             <button class="clearCompleted">Clear Completed</button>
         </div>
@@ -55,9 +55,9 @@
       </div>
       
       <div class="filters mobileOnly">
-        <button class="chosenFilter">All</button>
-        <button>Active</button>
-        <button>Completed</button>
+        <button id="filterAll" class="chosenFilter filter">All</button>
+        <button id="filterActive" class="filter">Active</button>
+        <button id="filterCompleted" class="filter">Completed</button>
       </div>
     <p class="bottomParagraph">Drag and drop to reorder list</p>
   </main>

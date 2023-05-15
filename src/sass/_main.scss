@@ -106,12 +106,21 @@ main{
             align-items: center;
             margin-left: .5rem;
             color: var(--neutral-600);
+            &:hover,
+            &:focus{
+                cursor: pointer;
+            }
         }
         button{
             border: 0;
             background: transparent;
             margin-left: auto;
+            &:hover,
+            &:focus{
+                cursor: pointer;
+            }
         }
+
     }
 }
 
@@ -147,13 +156,20 @@ main{
         background: transparent;
         color: var(--neutral-400);
         font-weight: 700;
-        
+        &:hover,
+        &:focus{
+            cursor: pointer;
+            color: var(--neutral-700) !important;
+            transition: 300ms ease-in-out;
+        }
 
     }
 }
 
 .chosenFilter{
-    color: var(--primary-500);
+    color: var(--primary-500) !important;
+   
+    
 }
 
 .bottomParagraph{
@@ -183,6 +199,11 @@ main{
     position: absolute;
     top: 0;
     width: 28px;
+    &:hover,
+    &:focus{
+        border: 1px solid linear-gradient(100deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 100%);
+        //border-image:linear-gradient(100deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 100%);
+    }
   }
   
   .round label:after {
@@ -197,8 +218,8 @@ main{
     top: 8px;
     transform: rotate(-45deg);
     width: 12px;
-  }
-  
+    
+    }
   .round input[type="checkbox"] {
     visibility: hidden;
   }

@@ -66,16 +66,15 @@ const todoList = document.querySelector(".todoList")
 const todoInputWrapper = document.querySelector(".newTodoWrapper")
 
 let itemsLeft = document.querySelector("#itemsLeft")
-function updateNumberOfTodos(){
-    itemsLeft.innerText = `${todos.length} items left`
-}
+
+
 
 
 var todos = []
 
 
+
 todoInputWrapper.addEventListener("submit", (e)=>{
-    console.log(newTodoInput.value)
     if(newTodoInput.value == '') return
     let todo = {
         id:Date.now(),
@@ -109,6 +108,7 @@ todoInputWrapper.addEventListener("submit", (e)=>{
 })
 
 function loadTodos(){
+    todoList.innerHTML=""
     let localTodosJSON = localStorage.getItem("todos")
     let localTodos = JSON.parse(localTodosJSON)
     localTodos.forEach(element => {
@@ -172,7 +172,7 @@ function deleteTodos(){
                     loadTodos()
                     deleteTodos()             
                     markingTodos()
-
+                    updateNumberOfTodos()
                 }
             });
         })
@@ -197,11 +197,104 @@ function markingTodos(){
                     todoList.innerHTML=""
                     loadTodos()
                     deleteTodos()
+                    updateNumberOfTodos()
                 }
             })
         })
     })
 }
 
+
+const filterAll = document.querySelector("#filterAll")
+const filterActive = document.querySelector("#filterActive")
+const filterCompleted = document.querySelector("#filterCompleted")
+
+filterAll.addEventListener("click", loadTodos)
+
+filterActive.addEventListener("click", ()=>{
+    
+    todos.forEach(element=>{
+        if(element["completed"] == false){
+            todoList.innerHTML =""
+            let localTodosJSON = localStorage.getItem("todos")
+            let localTodos = JSON.parse(localTodosJSON)
+            localTodos.forEach(element => {
+                let part = document.createElement("div")
+                part.setAttribute("class", "todo")
+                part.setAttribute("id", element.id)
+                if(element.completed == false){
+                    part.innerHTML=`
+                    <div class="container">
+                      <div class="round">
+                        <input type="checkbox" class="checkbox"   id="checkbox${element.id}" />
+                        <label class="checkboxLabel" for="checkbox${element.id}"></label>
+                      </div>
+                    </div>
+                    <p>${element.text}</p>
+                    <button class="deleteButton">
+                        <img src="assets/images/icon-cross.svg" alt="">
+                    </button>
+                `
+                } else if (element.completed == true){
+                    part.style.display = "none"
+                }
+            todoList.append(part)
+            updateNumberOfTodos()
+            deleteTodos()
+    
+    })
+    markingTodos()
+        } 
+    })
+})
+
+filterCompleted.addEventListener("click", ()=>{
+    todos.forEach(element=>{
+        if(element["completed"] == false){
+            todoList.innerHTML =""
+            let localTodosJSON = localStorage.getItem("todos")
+            let localTodos = JSON.parse(localTodosJSON)
+            localTodos.forEach(element => {
+                let part = document.createElement("div")
+                part.setAttribute("class", "todo")
+                part.setAttribute("id", element.id)
+                if(element.completed == true){
+                    part.innerHTML=`
+                    <div class="container">
+                      <div class="round">
+                        <input checked type="checkbox" class="checkbox"   id="checkbox${element.id}" />
+                        <label class="checkboxLabel" for="checkbox${element.id}"></label>
+                      </div>
+                    </div>
+                    <p>${element.text}</p>
+                    <button class="deleteButton">
+                        <img src="assets/images/icon-cross.svg" alt="">
+                    </button>
+                `
+                } else if (element.completed == false){
+                    part.style.display = "none"
+                }
+            todoList.append(part)
+            updateNumberOfTodos()
+            deleteTodos()
+    
+    })
+    markingTodos()
+        } 
+    })
+})
+
+
+function updateNumberOfTodos(){
+    let counter = 0
+    todos.forEach(element =>{
+        if(element.completed == true){
+            counter = counter + 1
+            itemsLeft.innerText = `${counter} items left`
+        } else if (element.completed == false){
+        }
+    })
+    
+}
 
 

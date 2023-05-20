@@ -1,0 +1,365 @@
+:root {
+  --light-900:hsl(0, 0%, 98%);
+  --light-700:hsl(236, 33%, 92%);
+  --light-600:hsl(233, 11%, 84%);
+  --light-500:hsl(236, 9%, 61%);
+  --light-400:hsl(235, 19%, 35%);
+  --dark-700:hsl(236, 33%, 92%);
+  --dark-600:hsl(234, 39%, 85%);
+  --dark-500:hsl(234, 11%, 52%);
+  --dark-400:hsl(233, 14%, 35%);
+  --dark-300:hsl(237, 14%, 26%);
+  --dark-200:hsl(235, 24%, 19%);
+  --dark-100:hsl(235, 21%, 11%);
+  --neutral-700:hsl(236, 33%, 92%);
+  --neutral-600:hsl(234, 39%, 85%);
+  --neutral-500:hsl(234, 11%, 52%);
+  --neutral-400:hsl(233, 14%, 35%);
+  --neutral-300:hsl(237, 14%, 26%);
+  --neutral-200:hsl(235, 24%, 19%);
+  --neutral-100:hsl(235, 21%, 11%);
+  --primary-500:hsl(220, 98%, 61%);
+  --primary-400:linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+}
+
+body {
+  font-size: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: var(--neutral-100);
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  background-image: url(../assets/images/bg-mobile-dark.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top center;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+}
+
+.topWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+.topWrapper h1 {
+  color: var(--light-900);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  font-size: clamp(2rem, 10vw, 4rem);
+}
+
+.themeSwitcher {
+  background: transparent;
+  border: 0;
+}
+
+.newTodoWrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--neutral-200);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 2rem;
+}
+
+#newTodoCheckbox {
+  border-radius: 100px;
+  width: 1.5rem;
+  border: 0;
+  aspect-ratio: 1;
+  height: 50%;
+  border: 1px solid var(--neutral-300);
+  appearance: none;
+}
+
+#newTodoInput {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--neutral-200);
+  border: 0;
+  margin-left: 0.5rem;
+  font-size: clamp(0.75rem, 4vw, 1.5rem);
+  text-align: left;
+  color: var(--neutral-700);
+}
+
+.todoList {
+  padding-inline-start: 0;
+  list-style: none;
+  margin-block: 0;
+  margin-block-start: 1rem;
+}
+.todoList li:first-child {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.todoList .todo {
+  background-color: var(--neutral-200);
+  display: flex;
+  padding: 1rem;
+  border-bottom: 1px solid var(--neutral-400);
+}
+.todoList .todo input {
+  accent-color: red;
+  border: 1px solid red;
+  aspect-ratio: 1;
+  width: 1.5rem;
+}
+.todoList .todo p {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  color: var(--neutral-600);
+}
+.todoList .todo p:hover, .todoList .todo p:focus {
+  cursor: pointer;
+}
+.todoList .todo button {
+  border: 0;
+  background: transparent;
+  margin-left: auto;
+}
+.todoList .todo button:hover, .todoList .todo button:focus {
+  cursor: pointer;
+}
+
+.lastListItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--neutral-200);
+  padding: 1rem;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: 0;
+  margin-bottom: 1rem;
+}
+.lastListItem p, .lastListItem button {
+  color: var(--neutral-600);
+  font-size: clamp(0.75rem, 3vw, 1.5rem);
+  border: 0;
+  background: transparent;
+}
+
+.filters {
+  display: flex;
+  padding: 1rem;
+  background-color: var(--neutral-200);
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 5px;
+}
+.filters button {
+  border: 0;
+  background: transparent;
+  color: var(--neutral-400);
+  font-weight: 700;
+}
+.filters button:hover, .filters button:focus {
+  cursor: pointer;
+  color: var(--neutral-700) !important;
+  transition: 300ms ease-in-out;
+}
+
+.chosenFilter {
+  color: var(--primary-500) !important;
+}
+
+.bottomParagraph {
+  margin-inline: auto;
+  color: var(--neutral-400);
+  padding: 3rem;
+}
+
+.desktopOnly {
+  display: none;
+}
+
+.mobileOnly {
+  display: flex;
+}
+
+.round {
+  position: relative;
+}
+
+.round label {
+  background-color: #fff;
+  border: 1px solid;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 28px;
+}
+.round label:hover, .round label:focus {
+  border: 1px solid linear-gradient(100deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 100%);
+}
+
+.round label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+.round input[type=checkbox] {
+  visibility: hidden;
+}
+
+.round input[type=checkbox]:checked + label {
+  background-image: linear-gradient(135deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 100%);
+  border-image: linear-gradient(100deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 100%);
+}
+
+.round input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+.todo:has(input:checked) p {
+  text-decoration: line-through;
+  color: var(--neutral-400);
+}
+
+@media only screen and (min-width: 650px) {
+  main {
+    max-width: 600px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  body {
+    background-image: url(../assets/images/bg-desktop-dark.jpg);
+  }
+  .todo p {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    font-weight: 400;
+    padding-left: 1rem;
+  }
+  .lastListItem p, .lastListItem button {
+    font-size: clamp(0.75rem, 1.25vw, 1.25rem);
+  }
+  .lastListItem {
+    border-radius: 0;
+    border-bottom: 1px solid var(--neutral-400);
+    margin-bottom: 0;
+  }
+  .desktopOnly {
+    display: flex;
+  }
+  .mobileOnly {
+    display: none;
+  }
+  .filtersAndLastItem {
+    color: var(--neutral-400);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--neutral-200);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 1rem;
+  }
+  .filtersAndLastItem .clearCompletedDesktop,
+  .filtersAndLastItem .clearCompletedMobile {
+    border: 0;
+    background: transparent;
+    color: var(--neutral-400);
+  }
+  .filtersAndLastItem .filters {
+    padding: 0;
+  }
+}

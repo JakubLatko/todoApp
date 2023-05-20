@@ -288,7 +288,8 @@ main{
     }
     .filtersAndLastItem{
         color: var(--neutral-400);
-        .clearCompleted{
+        .clearCompletedDesktop,
+        .clearCompletedMobile{
             border: 0;
             background: transparent;
             color: var(--neutral-400);

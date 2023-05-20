@@ -65,8 +65,8 @@ const newTodoInput = document.querySelector("#newTodoInput")
 const todoList = document.querySelector(".todoList")
 const todoInputWrapper = document.querySelector(".newTodoWrapper")
 
-let itemsLeft = document.querySelector("#itemsLeft")
-
+let itemsLeftMobile = document.querySelector("#itemsLeftMobile")
+let itemsLeftDesktop = document.querySelector("#itemsLeftDesktop")
 
 
 
@@ -205,14 +205,28 @@ function markingTodos(){
 }
 
 
-const filterAll = document.querySelector("#filterAll")
-const filterActive = document.querySelector("#filterActive")
-const filterCompleted = document.querySelector("#filterCompleted")
+const filterAllDesktop = document.querySelector("#filterAllDesktop")
+const filterActiveDesktop = document.querySelector("#filterActiveDesktop")
+const filterCompletedDesktop = document.querySelector("#filterCompletedDesktop")
 
-filterAll.addEventListener("click", loadTodos)
+const filterAllMobile = document.querySelector("#filterAllMobile")
+const filterActiveMobile = document.querySelector("#filterActiveMobile")
+const filterCompletedMobile = document.querySelector("#filterCompletedMobile")
 
-filterActive.addEventListener("click", ()=>{
-    
+
+
+filterAllDesktop.addEventListener("click", loadTodos)
+filterActiveDesktop.addEventListener("click", activeFiltering)
+filterCompletedDesktop.addEventListener("click", completedFiltering)
+
+filterAllMobile.addEventListener("click", loadTodos)
+filterActiveMobile.addEventListener("click", activeFiltering )
+filterCompletedMobile.addEventListener("click", completedFiltering)
+
+
+
+
+function activeFiltering(){
     todos.forEach(element=>{
         if(element["completed"] == false){
             todoList.innerHTML =""
@@ -246,11 +260,13 @@ filterActive.addEventListener("click", ()=>{
     markingTodos()
         } 
     })
-})
+}
 
-filterCompleted.addEventListener("click", ()=>{
+
+
+function completedFiltering(){
     todos.forEach(element=>{
-        if(element["completed"] == false){
+        if(element["completed"] == true){
             todoList.innerHTML =""
             let localTodosJSON = localStorage.getItem("todos")
             let localTodos = JSON.parse(localTodosJSON)
@@ -282,7 +298,34 @@ filterCompleted.addEventListener("click", ()=>{
     markingTodos()
         } 
     })
-})
+}
+
+const clearCompletedMobile = document.querySelector(".clearCompletedMobile")
+const clearCompletedDesktop = document.querySelector(".clearCompletedDesktop")
+
+clearCompletedDesktop.addEventListener("click", clearingCompleted)
+clearCompletedMobile.addEventListener("click", clearingCompleted)
+
+var todosToRemove = []
+
+function clearingCompleted(){
+    todos.forEach(element =>{
+        
+        if(element["completed"] == true){
+            todos.splice(todos.indexOf(element), 1)
+            console.log(todos.indexOf(element))
+            clearingCompleted()
+        } else if(element["completed"] == false){
+
+        }
+    })
+    localStorage.setItem("todos", JSON.stringify(todos))
+    todoList.innerHTML=""
+    loadTodos()
+    deleteTodos()             
+    markingTodos()
+    updateNumberOfTodos()
+}
 
 
 function updateNumberOfTodos(){
@@ -290,7 +333,8 @@ function updateNumberOfTodos(){
     todos.forEach(element =>{
         if(element.completed == true){
             counter = counter + 1
-            itemsLeft.innerText = `${counter} items left`
+            itemsLeftDesktop.innerText = `${counter} items left`
+            itemsLeftMobile.innerText = `${counter} items left`
         } else if (element.completed == false){
         }
     })

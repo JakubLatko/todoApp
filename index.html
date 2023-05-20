@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="css/index.css">
+  <title>Todo app</title>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <div class="topWrapper">
+      <h1>Todo</h1>
+      <button class="themeSwitcher">
+        <img class="themeIcon" src="assets/images/icon-sun.svg" alt="">
+      </button>
+    </div>
+      <form action="" method="" class="newTodoWrapper">
+        <input type="checkbox" name="newTodoCheckbox" disabled id="newTodoCheckbox">
+        <input type="text" name="newTodoInput" id="newTodoInput" placeholder="Create a new todo">
+      </form>
+      <div>
+        <ul class="todoList">
+        </ul>
+        <div class="filtersAndLastItem desktopOnly">
+            <p id="itemsLeftDesktop">0 items left</p>
+            <div class="filters">
+              <button id="filterAllDesktop" class="filter chosenFilter">All</button>
+              <button id="filterActiveDesktop" class="filter">Active</button>
+              <button id="filterCompletedDesktop" class="filter">Completed</button>
+            </div>
+            <button class="clearCompletedDesktop">Clear Completed</button>
+        </div>
+        <div class="lastListItem mobileOnly">
+          <p id="itemsLeftMobile">0 items left</p>
+          <button class="clearCompletedMobile">Clear Completed</button>
+        </div>
+      </div>
+      
+      <div class="filters mobileOnly">
+        <button id="filterAllMobile" class="chosenFilter filter">All</button>
+        <button id="filterActiveMobile" class="filter">Active</button>
+        <button id="filterCompletedMobile" class="filter">Completed</button>
+      </div>
+    <p class="bottomParagraph">Drag and drop to reorder list (in development)</p>
+  </main>
+</body>
+</html>
